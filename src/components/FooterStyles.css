@@ -1,0 +1,19 @@
+.footer{
+    background-color: var(--background-gray);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
+.legal{
+    background-color: var(--color-primary);
+    color: white;
+    
+}
+.group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

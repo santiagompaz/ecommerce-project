@@ -1,0 +1,15 @@
+.not-found{
+    border: solid;
+    border-color: var(--light-gray);
+    border-radius: 20px;
+    border-width: 1px;
+    padding: 12px;
+}
+.error-title{
+    color: var(--error);
+    font-weight: bold;
+}
+.error-description{
+    color: var(--text-primary);
+    font-weight: bold;
+}

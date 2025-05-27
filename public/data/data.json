@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "image": "https://elpolloricardo.com.ar/wp-content/uploads/2024/08/CATALOGO-FRESCOS-2024.png", 
+        "name": "Maple Huevos Blancos Medianos N°2", 
+        "description": "58 gramos", 
+        "price": 7200, 
+        "stock": 100
+    },
+    {
+        "id": 2,
+        "image": "https://http2.mlstatic.com/D_NQ_NP_876627-MLA78573506450_082024-O.webp", 
+        "name": "Maple Huevos Blancos Grandes N°1", 
+        "description": "65 gramos", 
+        "price": 7600, 
+        "stock": 100
+    },
+    {
+        "id": 3,
+        "image": "https://www.elcucodigital.com/wp-content/uploads/2022/08/HUEVOS.jpg", 
+        "name": "Maple Huevos Super Grandes", 
+        "description": "+73 gramos", 
+        "price": 8300, 
+        "stock": 100
+    },
+    {
+        "id": 4,
+        "image": "https://dcdn-us.mitiendanube.com/stores/001/236/043/products/maples-de-huevos-go-fresh1-792427b6a8c1a0b92315124448238581-1024-10241-ea85667167b58712de15928773970717-1024-1024.jpg", 
+        "name": "Maple Huevos de Campo", 
+        "description": "Yema naranja", 
+        "price": 9200, 
+        "stock": 100
+    },
+    {
+        "id": 5,
+        "image": "https://acdn-us.mitiendanube.com/stores/001/229/173/products/captura-de-pantalla-de-2021-06-10-08-57-301-41db49ef3db51817f716233263621128-640-0.png", 
+        "name": "Maple Huevos Agroecológicos", 
+        "description": "Gallina feliz", 
+        "price": 10500, 
+        "stock": 100
+    }
+]
