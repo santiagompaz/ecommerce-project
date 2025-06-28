@@ -5,12 +5,10 @@ import Cart from './Cart'
 import { Menu } from './Menu'
 import logo from '../assets/logo.jpg'
 
-export const Header = ({emptyCart, addToCart, removeFromCart, removeItem, cartProducts}) => {
+export const Header = () => {
 
     const [showCart, setShowCart] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
-
-    console.log("removeItem en Header:", removeItem);
     
     return (
         <header>
@@ -28,7 +26,7 @@ export const Header = ({emptyCart, addToCart, removeFromCart, removeItem, cartPr
                     </li>*/}
                 </ul>
                 <div className={`cart-sidebar ${showCart ? 'open' : ''}`}> 
-                    <Cart emptyCart={emptyCart} addToCart={addToCart} removeFromCart={removeFromCart} removeItem={removeItem} cartProducts={cartProducts} showCart={showCart} onClose={()=>setShowCart(false)}/>
+                    <Cart showCart={showCart} onClose={()=>setShowCart(false)}/>
                 </div>
                 <div className={`menu-sidebar ${showMenu ? 'open' : ''}`}> 
                     <Menu />

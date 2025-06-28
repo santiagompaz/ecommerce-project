@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ProductsStyles.css";
 import placeholder from "../assets/placeholder.jpg";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
-export const Products = ({ addToCart, product }) => {
+export const Products = ({ product }) => {
+
+  const {handleAddToCart} = useContext(CartContext);
+
   const [quantity, setQuantity] = useState(0);
 
   const add = () => setQuantity((prev) => (prev < product.stock ? prev + 1 : prev));
@@ -35,7 +39,7 @@ export const Products = ({ addToCart, product }) => {
       </div>
       <div className="button-area">
         <button
-          onClick={() => addToCart(product, quantity)}
+          onClick={() => handleAddToCart(product, quantity)}
           className="button-primary"
           disabled={quantity === 0}
         >

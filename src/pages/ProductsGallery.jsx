@@ -1,33 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { Nav } from "../components/Nav";
 import { ProductList } from "../components/ProductList";
 import spinner from "../assets/loading.gif";
+import { CartContext } from "../context/CartContext";
 
-export const ProductsGallery = ({
-  emptyCart,
-  removeFromCart,
-  removeItem,
-  addToCart,
-  cart,
-  products,
-  loading,
-}) => {
+export const ProductsGallery = () => {
+
+  const { loading } = useContext(CartContext);
+
   return (
     <div>
-      <Header
-        emptyCart={emptyCart}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-        removeItem={removeItem}
-        cartProducts={cart}
-      />
+      <Header />
       <Nav />
       {loading ? (
         <img src={spinner} alt="Cargando..." />
       ) : (
-        <ProductList addToCart={addToCart} products={products} />
+        <ProductList />
       )}
       <Footer />
     </div>

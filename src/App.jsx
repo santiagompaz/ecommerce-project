@@ -16,89 +16,27 @@ import { CartContext } from "./context/CartContext";
 
 function App() {
   
-  const {cart, products, loading, error, isAuthenticated, handleAddToCart, handleDeleteFromCart, handleRemoveItem, handleEmptyCart} = useContext(CartContext)
+  const {isAuthenticated} = useContext(CartContext)
 
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              emptyCart={handleEmptyCart}
-              removeFromCart={handleDeleteFromCart}
-              addToCart={handleAddToCart}
-              removeItem={handleRemoveItem}
-              cart={cart}
-              products={products}
-              loading={loading}
-            />
-          }
-        />
+        <Route path="/" element={<Home /> } />
 
-        <Route
-          path="/about"
-          element={
-            <About
-              emptyCart={handleEmptyCart}
-              removeFromCart={handleDeleteFromCart}
-              removeItem={handleRemoveItem}
-              cart={cart}
-            />
-          }
-        />
+        <Route path="/about" element={<About />}/>
 
-        <Route
-          path="/gallery"
-          element={
-            <ProductsGallery
-              emptyCart={handleEmptyCart}
-              removeFromCart={handleDeleteFromCart}
-              addToCart={handleAddToCart}
-              removeItem={handleRemoveItem}
-              cart={cart}
-              products={products}
-              loading={loading}
-            />
-          }
-        />
+        <Route path="/gallery" element={<ProductsGallery />} />
 
-        <Route
-          path="/gallery/:id"
-          element={<ProductDetails products={products} />}
-        ></Route>
+        <Route path="/gallery/:id" element={<ProductDetails />} />
 
-        <Route
-          path="/faq"
-          element={
-            <Faq
-              emptyCart={handleEmptyCart}
-              removeFromCart={handleDeleteFromCart}
-              removeItem={handleRemoveItem}
-              cart={cart}
-            />
-          }
-        />
+        <Route path="/faq" element={<Faq />} />
 
-        <Route
-          path="/contact"
-          element={
-            <Contact
-              emptyCart={handleEmptyCart}
-              removeFromCart={handleDeleteFromCart}
-              removeItem={handleRemoveItem}
-              cart={cart}
-            />
-          }
-        />
+        <Route path="/contact" element={<Contact />} />
 
         <Route
           path="/admin"
           element={
-            <ProtectedRoutes isAuthenticated={isAuthenticated}>
-              {" "}
-              <Admin />{" "}
-            </ProtectedRoutes>
+            <ProtectedRoutes isAuthenticated={isAuthenticated}>{" "} <Admin />{" "} </ProtectedRoutes>
           }
         ></Route>
 

@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./CartStyles.css";
 import placeholder from "../assets/placeholder.jpg";
+import { CartContext } from "../context/CartContext";
 
 export const Cart = ({
-  emptyCart,
-  addToCart,
-  removeFromCart,
-  removeItem,
-  cartProducts,
   showCart,
   onClose,
 }) => {
 
+
+  const {cart, handleAddToCart, handleDeleteFromCart, handleRemoveItem, handleEmptyCart } = useContext(CartContext);
+
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const total = cartProducts.reduce(
+    const total = cart.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
     );
     setTotalPrice(total);
-  }, [cartProducts]);
+  }, [cart]);
 
   return (
     <div className={showCart ? "" : ""}>
@@ -30,11 +29,11 @@ export const Cart = ({
           <i className="bi bi-x-circle"></i>
         </button>
       </div>
-      {!cartProducts || cartProducts.length === 0 ? (
+      {!cart || cart.length === 0 ? (
         <p className="empty-cart">El carrito está vacío</p>
       ) : (
         <ul>
-          {cartProducts.map((item) => (
+          {cart.map((item) => (
             <li key={item.id} className="item-container">
               <div className="image-item-container">
                 <img
@@ -48,14 +47,14 @@ export const Cart = ({
                 <p className="price-item">${item.price}</p>
                 <div className="quantity-control">
                   <button
-                    onClick={() => removeFromCart(item)}
+                    onClick={() => handleDeleteFromCart(item)}
                     className="button-counter"
                   >
                     −
                   </button>
                   <span className="quantity-item">{item.quantity}</span>
                   <button
-                    onClick={() => addToCart(item)}
+                    onClick={() => handleAddToCart(item)}
                     className="button-counter"
                   >
                     +
@@ -66,7 +65,7 @@ export const Cart = ({
                 </p>
               </div>
               <div className="button-container">
-                <button onClick={() => removeItem(item)}>
+                <button onClick={() => handleRemoveItem(item)}>
                   <i className="bi bi-trash3"></i>
                 </button>
               </div>
@@ -79,7 +78,7 @@ export const Cart = ({
           Total: ${totalPrice.toFixed(2)}
         </h1>
         <button className="button-primary">Iniciar compra</button>
-        <button onClick={() => emptyCart()} className="button-secondary">
+        <button onClick={() => handleEmptyCart()} className="button-secondary">
           Vaciar carrito
         </button>
       </div>

@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Products } from "./Products";
 import './ProductListStyles.css'
+import { CartContext } from "../context/CartContext";
 
-export const ProductList = ({ addToCart, products }) => {
+export const ProductList = () => {
+
+  const { products } = useContext(CartContext);
+
   return (
     <div className="productList">
       {products.map((item) => (
 
-          <Products
-            key={item.id}
-            addToCart={addToCart}
-            product={item}
-          />
+          <Products key={item.id} product={item} />
 
       ))}
     </div>
