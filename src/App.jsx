@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import "./themes/themes.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { ProductsGallery } from "./pages/ProductsGallery";
@@ -19,7 +19,7 @@ function App() {
   const {isAuthenticated} = useContext(CartContext)
 
   return (
-    <Router>
+    
       <Routes>
         <Route path="/" element={<Home /> } />
 
@@ -44,7 +44,7 @@ function App() {
 
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-    </Router>
+    
   );
 }
 
