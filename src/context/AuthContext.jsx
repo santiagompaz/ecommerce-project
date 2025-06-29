@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "./CartContext";
 
 const AuthContext = createContext();
 
@@ -8,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
-  const { setIsAuthenticated } = useContext(CartContext);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const navigate = useNavigate();
 
@@ -16,7 +15,6 @@ export const AuthProvider = ({ children }) => {
     e.preventDefault();
 
     let validationErrors = {};
-
     if (!email) validationErrors.email = "El email es requerido";
     if (!password) validationErrors.password = "La contraseña es requerida";
 
@@ -24,32 +22,41 @@ export const AuthProvider = ({ children }) => {
       setError(validationErrors);
       return;
     }
+
     try {
-      const res = await fetch("data/users.json");
+      const res = await fetch("/data/users.json");
       const users = await res.json();
+      console.log("Usuarios cargados:", users);
 
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
 
       if (!foundUser) {
-        setError({ error: "Inválido" });
+        setError({ error: "Credenciales inválidas" });
       } else {
+        setIsAuthenticated(true);
         if (foundUser.role === "admin") {
-          setIsAuthenticated(true);
           navigate("/admin");
         } else {
           navigate("/");
         }
       }
     } catch (error) {
-      setError({ email: "Error" });
+      console.error("Error al autenticar:", error);
+      setError({ email: "Error del servidor o al cargar los usuarios" });
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ email, setEmail, password, setPassword, error, setError, handleSubmit }}
+      value={{
+        email, setEmail,
+        password, setPassword,
+        error, setError,
+        isAuthenticated, setIsAuthenticated,
+        handleSubmit
+      }}
     >
       {children}
     </AuthContext.Provider>

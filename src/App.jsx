@@ -13,14 +13,16 @@ import { Admin } from "./pages/Admin";
 import ProtectedRoutes from "./auth/ProtectedRoutes";
 import { NotFound } from "./components/NotFound";
 import { CartContext } from "./context/CartContext";
+import { useAuth } from "./context/AuthContext";
 
 function App() {
   
-  const {isAuthenticated} = useContext(CartContext)
+  const { isAuthenticated } = useAuth();
 
   return (
     
       <Routes>
+
         <Route path="/" element={<Home /> } />
 
         <Route path="/about" element={<About />}/>
