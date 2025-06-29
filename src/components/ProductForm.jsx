@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const ProductForm = ({ onAdd }) => {
+const ProductForm = ({ onAdd }) => {
   const [products, setProducts] = useState({
     name: "",
     description: "",
@@ -29,3 +29,5 @@ export const ProductForm = ({ onAdd }) => {
 
   return <div>ProductForm</div>;
 };
+
+export default ProductForm

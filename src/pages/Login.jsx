@@ -3,9 +3,15 @@ import { CartContext } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 
 export const Login = () => {
-  const { email, setEmail, password, setPassword, error, setError, handleSubmit } =
-    useAuth();
-  const { setIsAuthenticated } = useContext(CartContext);
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    setError,
+    handleSubmit,
+  } = useAuth();
 
   return (
     <form onSubmit={handleSubmit}>
