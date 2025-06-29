@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const ProductForm = ({ onAdd }) => {
-  const [product, setProduct] = useState({
-    name: "",
-    description: "",
-    price: "",
-    stock: "",
-    image: "",
-    category: "",
-  });
-
+const EditForm = ({ selectedProduct, onUpdate }) => {
+  const [product, setProduct] = useState(selectedProduct || {});
   const [error, setError] = useState({});
+
+  useEffect(() => {
+    if (selectedProduct) {
+      setProduct(selectedProduct);
+    }
+  }, [selectedProduct]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +17,7 @@ const ProductForm = ({ onAdd }) => {
       ? parseFloat(value) || 0
       : value;
 
-    setProduct({
-      ...product,
-      [name]: parsedValue,
-    });
+    setProduct({ ...product, [name]: parsedValue });
   };
 
   const handleSubmit = (e) => {
@@ -32,40 +27,38 @@ const ProductForm = ({ onAdd }) => {
     if (!product.name) validationErrors.name = "El nombre es requerido.";
     if (!product.description) validationErrors.description = "La descripción es requerida.";
     if (!product.price || product.price <= 0) validationErrors.price = "El precio debe ser mayor a 0.";
-    if (!product.stock || product.stock < 0) validationErrors.stock = "El stock debe ser 0 o mayor.";
-    if (!product.image) validationErrors.image = "La URL de la imagen es requerida.";
-    if (!product.category) validationErrors.category = "La categoría es requerida.";
+    if (!product.stock || product.stock < 0) validationErrors.stock = "El stock debe ser 0 o más.";
 
     if (Object.keys(validationErrors).length > 0) {
       setError(validationErrors);
       return;
     }
 
-    onAdd(product);
-
-    // Limpiar el formulario
-    setProduct({
-      name: "",
-      description: "",
-      price: "",
-      stock: "",
-      image: "",
-      category: "",
-    });
-    setError({});
+    onUpdate(product);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Crear nuevo producto</h2>
+      <h2>Editar producto</h2>
+
+      <div>
+        <label>ID:</label>
+        <input
+          type="text"
+          name="id"
+          value={product.id || ""}
+          readOnly
+        />
+      </div>
 
       <div>
         <label>Nombre:</label>
         <input
           type="text"
           name="name"
-          value={product.name}
+          value={product.name || ""}
           onChange={handleChange}
+          required
         />
         {error.name && <p style={{ color: "red" }}>{error.name}</p>}
       </div>
@@ -75,8 +68,9 @@ const ProductForm = ({ onAdd }) => {
         <input
           type="text"
           name="description"
-          value={product.description}
+          value={product.description || ""}
           onChange={handleChange}
+          required
         />
         {error.description && <p style={{ color: "red" }}>{error.description}</p>}
       </div>
@@ -86,8 +80,9 @@ const ProductForm = ({ onAdd }) => {
         <input
           type="number"
           name="price"
-          value={product.price}
+          value={product.price || ""}
           onChange={handleChange}
+          required
           min="0"
         />
         {error.price && <p style={{ color: "red" }}>{error.price}</p>}
@@ -98,8 +93,9 @@ const ProductForm = ({ onAdd }) => {
         <input
           type="number"
           name="stock"
-          value={product.stock}
+          value={product.stock || ""}
           onChange={handleChange}
+          required
           min="0"
         />
         {error.stock && <p style={{ color: "red" }}>{error.stock}</p>}
@@ -110,10 +106,9 @@ const ProductForm = ({ onAdd }) => {
         <input
           type="text"
           name="image"
-          value={product.image}
+          value={product.image || ""}
           onChange={handleChange}
         />
-        {error.image && <p style={{ color: "red" }}>{error.image}</p>}
       </div>
 
       <div>
@@ -121,15 +116,14 @@ const ProductForm = ({ onAdd }) => {
         <input
           type="text"
           name="category"
-          value={product.category}
+          value={product.category || ""}
           onChange={handleChange}
         />
-        {error.category && <p style={{ color: "red" }}>{error.category}</p>}
       </div>
 
-      <button type="submit">Crear producto</button>
+      <button type="submit">Actualizar producto</button>
     </form>
   );
 };
 
-export default ProductForm;
+export default EditForm;
