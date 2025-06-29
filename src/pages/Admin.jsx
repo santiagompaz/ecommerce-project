@@ -3,7 +3,6 @@ import ProductForm from "../components/ProductForm";
 import placeholder from "../assets/placeholder.jpg";
 import EditForm from "../components/EditForm";
 import spinner from "../assets/loading.gif";
-import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
