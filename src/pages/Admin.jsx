@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductForm from "../components/ProductForm";
 import placeholder from "../assets/placeholder.jpg";
 import EditForm from "../components/EditForm";
+import spinner from "../assets/loading.gif";
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const Admin = () => {
+  const { setIsAuthenticated } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [selected, setSelected] = useState(null);
+  const {navigate} = useNavigate()
 
   const apiUrl =
     "https://681b766b17018fe5057baf9f.mockapi.io/productos-ecommerce/product";
@@ -31,6 +37,16 @@ export const Admin = () => {
     fetchProducts();
   }, []);
 
+  const reloadProducts = async () => {
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.log("Error al cargar productos: ", error);
+    }
+  };
+
   const createProduct = async (productData) => {
     try {
       const response = await fetch(apiUrl, {
@@ -48,8 +64,8 @@ export const Admin = () => {
       const newProduct = await response.json();
 
       alert("Producto creado correctamente!");
-      setProducts((prev) => [...prev, newProduct]);
       setIsOpen(false);
+      await reloadProducts();
     } catch (error) {
       console.error("Error al crear producto:", error);
       alert("Hubo un problema al crear el producto.");
@@ -69,10 +85,9 @@ export const Admin = () => {
       const data = await response.json();
       alert("Producto actualizado correctamente.");
 
-      setProducts((prev) => prev.map((p) => (p.id === data.id ? data : p)));
-
       setIsOpenEdit(false);
       setSelected(null);
+      await reloadProducts();
     } catch (error) {
       console.error(error.message);
       alert("Hubo un problema al editar el producto.");
@@ -92,7 +107,7 @@ export const Admin = () => {
         if (!response.ok) throw new Error("Error al eliminar el producto.");
 
         alert("Producto eliminado correctamente.");
-        setProducts((prev) => prev.filter((product) => product.id !== id));
+        await reloadProducts();
       } catch (error) {
         console.error(error);
         alert("Hubo un problema al eliminar el producto.");
@@ -103,9 +118,26 @@ export const Admin = () => {
   return (
     <div>
       {loading ? (
-        <p>Cargando productos...</p>
+        <img src={spinner} alt="Cargando..." />
       ) : (
-        <div>
+        <>
+          <nav>
+            <ul>
+              <li>
+                <button
+                  onClick={() => {
+                    setIsAuthenticated(false);
+                    navigate("/");
+                    localStorage.removeItem("isAuthenticated");
+                  }}
+                >
+                  <i className="bi bi-box-arrow-right"></i>
+                </button>
+              </li>
+
+              <li></li>
+            </ul>
+          </nav>
           <h1>Panel administrativo</h1>
 
           {products.map((item) => (
@@ -157,7 +189,7 @@ export const Admin = () => {
           {isOpenEdit && selected && (
             <EditForm selectedProduct={selected} onUpdate={updateProduct} />
           )}
-        </div>
+        </>
       )}
     </div>
   );
