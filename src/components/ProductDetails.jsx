@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import './ProductDetailsStyles.css'
+import { CartContext } from "../context/CartContext";
 
-export const ProductDetails = ({ products }) => {
+export const ProductDetails = () => {
+
+  const { products } = useContext(CartContext);
+
   const { id, idUser } = useParams();
 
   const product = products.find((prod) => prod.id == id);
