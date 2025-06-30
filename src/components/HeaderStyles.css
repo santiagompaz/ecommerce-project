@@ -43,6 +43,52 @@
 .cart-sidebar.open {
     right: 0;
 }
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-icon {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.icon-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.2);
+  color: #98D9E1;
+}
+
+.search-slide {
+  transition: width 0.3s ease;
+  width: 180px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 .menu-sidebar{
     position: fixed;
     top: 0;

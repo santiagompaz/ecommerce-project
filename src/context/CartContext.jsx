@@ -10,6 +10,7 @@ export const CartProvider = ({children}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [finder, setFinder] = useState('')
 
   const apiUrl =
     "https://681b766b17018fe5057baf9f.mockapi.io/productos-ecommerce/product";
@@ -33,6 +34,8 @@ export const CartProvider = ({children}) => {
   if(error){
     return(<NotFound/>)
   }
+
+  const filteredProducts = products.filter((products) => products?.name.toLowerCase().includes(finder.toLowerCase()))
 
   const handleAddToCart = (product, quantity = 1) => {
     const productInCart = cart.find((item) => item.id === product.id);
@@ -73,7 +76,7 @@ export const CartProvider = ({children}) => {
   };
 
     return(
-        <CartContext.Provider value={{cart, products, loading, error, isAuthenticated, handleAddToCart, handleDeleteFromCart, handleRemoveItem, handleEmptyCart}}>
+        <CartContext.Provider value={{cart, products, loading, error, isAuthenticated, handleAddToCart, handleDeleteFromCart, handleRemoveItem, handleEmptyCart, filteredProducts, finder, setFinder}}>
             {children}
         </CartContext.Provider>
     )
