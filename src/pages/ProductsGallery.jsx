@@ -13,7 +13,6 @@ export const ProductsGallery = () => {
   return (
     <div>
       <Header />
-      <Nav />
       {loading ? (
         <img src={spinner} alt="Cargando..." />
       ) : (

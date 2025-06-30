@@ -7,7 +7,6 @@ export const Contact = () => {
   return (
     <div>
         <Header />
-        <Nav/>
         <h1>Contact</h1>
         <Footer/>
     </div>

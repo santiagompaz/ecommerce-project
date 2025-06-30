@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./HeaderStyles.css";
 import Cart from "./Cart";
 import { Menu } from "./Menu";
@@ -17,7 +17,7 @@ export const Header = () => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setShowSearch(false);
-        setFinder(""); // ← Limpiar el input al cerrar
+        setFinder("");
       }
     };
 
@@ -32,52 +32,130 @@ export const Header = () => {
 
   return (
     <header>
-      <ul className="header">
-        <li>
-          <img src={logo} alt="Huevería La Selección" className="logo" />
-        </li>
+      <nav className="navbar navbar-expand-lg navbar-custom">
+        <div className="container-fluid d-flex align-items-center justify-content-between">
+          <Link
+            to="/"
+            className="d-flex align-items-center gap-3 text-decoration-none"
+          >
+            <img src={logo} alt="Huevería La Selección" className="logo" />
+            <h1 className="title m-0">La Selección - Huevos & Regionales</h1>
+          </Link>
 
-        <li>
-          <h1 className="title">Huevería La Selección</h1>
-        </li>
+          <div
+            className="collapse navbar-collapse justify-content-center"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav gap-3">
+              <li className="nav-item">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  <i className="bi bi-house-door"></i> Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  <i className="bi bi-person"></i> Sobre nosotros
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/gallery"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  <i className="bi bi-bag"></i> Galería
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/faq"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  <i className="bi bi-question-circle"></i> Preguntas frecuentes
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                >
+                  <i className="bi bi-telephone"></i> Contacto
+                </NavLink>
+              </li>
+            </ul>
+          </div>
 
-        <li className="icon-section">
-          {!showSearch && (
-            <button className="icon-button" onClick={() => setShowSearch(true)}>
-              <i className="bi bi-search"></i>
-            </button>
-          )}
+          <div className="d-flex align-items-center gap-3">
+            <div className="icon-section">
+              {!showSearch && (
+                <button
+                  className="icon-button"
+                  onClick={() => setShowSearch(true)}
+                >
+                  <i className="bi bi-search"></i>
+                </button>
+              )}
 
-          {showSearch && (
-            <div ref={searchRef}>
-              <input
-                type="text"
-                className="search-slide"
-                placeholder="Buscar productos..."
-                value={finder}
-                onChange={(e) => setFinder(e.target.value)}
-                autoFocus
-              />
+              {showSearch && (
+                <div ref={searchRef}>
+                  <input
+                    type="text"
+                    className="search-slide"
+                    placeholder="Buscar productos..."
+                    value={finder}
+                    onChange={(e) => setFinder(e.target.value)}
+                    autoFocus
+                  />
+                </div>
+              )}
             </div>
-          )}
-        </li>
 
-        <ul className="sections">
-          <li>
-            <button className="icon-button" onClick={() => setShowCart(!showCart)}>
+            <button
+              className="icon-button"
+              onClick={() => setShowCart(!showCart)}
+            >
               <i className="bi bi-cart"></i>
             </button>
-          </li>
-        </ul>
 
-        <div className={`cart-sidebar ${showCart ? "open" : ""}`}>
-          <Cart showCart={showCart} onClose={() => setShowCart(false)} />
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
         </div>
+      </nav>
 
-        <div className={`menu-sidebar ${showMenu ? "open" : ""}`}>
-          <Menu />
-        </div>
-      </ul>
+      <div className={`cart-sidebar ${showCart ? "open" : ""}`}>
+        <Cart showCart={showCart} onClose={() => setShowCart(false)} />
+      </div>
+
+      {/*
+      <div className={`menu-sidebar ${showMenu ? "open" : ""}`}>
+        <Menu />
+      </div>
+      */}
     </header>
   );
 };

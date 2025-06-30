@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-import { Nav } from '../components/Nav'
 import { ProductList } from '../components/ProductList'
 import spinner from '../assets/loading.gif'
+import banner from '../assets/banner.png'
 import { CartContext } from '../context/CartContext'
 
 export const Home = () => {
@@ -13,9 +13,8 @@ export const Home = () => {
   return (
     <div>
         <Header />
-        <Nav/>
         <main>
-          <h1>Home</h1>
+          <img src={banner} alt="Banner principal" style={{ width: '100%', height: 'auto', marginBottom: '1rem' }} />
           {
             loading ? 
               <img src={spinner} alt='Cargando...'/> 

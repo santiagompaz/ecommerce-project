@@ -7,7 +7,6 @@ export const Faq = () => {
   return (
     <div>
         <Header />
-        <Nav/>
         <h1>Faq</h1>
         <Footer/>
     </div>
