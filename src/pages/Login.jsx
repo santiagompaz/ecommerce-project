@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
+import "./LoginStyles.css";
 
 export const Login = () => {
   const {
@@ -15,29 +16,42 @@ export const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="formBasicEmail">E-mail</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Ingrese su e-mail
+        </label>
         <input
-          id="formBasicEmail"
           type="email"
-          placeholder="Ingrese su email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="usuario@dominio.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {error.email && <div>{error.email}</div>}
+        {error.email && <div className="message-error">{error.email}</div>}
       </div>
-      <div>
-        <label htmlFor="formBasicPassword">Contraseña</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Ingrese su contraseña
+        </label>
         <input
-          id="formBasicPassword"
           type="password"
-          placeholder="Ingrese su contraseña"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="********"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error.password && <div>{error.password}</div>}
+        {error.password && (
+          <div className="message-error">{error.password}</div>
+        )}
       </div>
-      <button type="submit">Submit</button>
+
+      <div className="button-area">
+        <button type="submit" className="button-primary">
+          Ingresar
+        </button>
+      </div>
     </form>
   );
 };
