@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export const AdminContext = createContext();
 
@@ -21,7 +22,13 @@ export const AdminProvider = ({ children }) => {
         setProducts(data);
       } catch (error) {
         console.error("Error al obtener productos:", error);
-        alert("No se pudieron cargar los productos.");
+        Swal.fire({
+          title: "Error",
+          text: "No se pudieron cargar los productos.",
+          icon: "error",
+          confirmButtonColor: "#98D9E1",
+          confirmButtonText: "Aceptar",
+        });
       } finally {
         setLoading(false);
       }
@@ -56,12 +63,24 @@ export const AdminProvider = ({ children }) => {
 
       const newProduct = await response.json();
 
-      alert("Producto creado correctamente!");
+      Swal.fire({
+        title: "¡Felicitaciones!",
+        text: "Producto creado correctamente.",
+        icon: "success",
+        confirmButtonColor: "#98D9E1",
+        confirmButtonText: "Aceptar",
+      });
       setIsOpen(false);
       await reloadProducts();
     } catch (error) {
       console.error("Error al crear producto:", error);
-      alert("Hubo un problema al crear el producto.");
+      Swal.fire({
+        title: "Error",
+        text: "Hubo un problema al crear el producto.",
+        icon: "error",
+        confirmButtonColor: "#98D9E1",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
@@ -76,22 +95,42 @@ export const AdminProvider = ({ children }) => {
       if (!response.ok) throw new Error("Error al editar el producto.");
 
       const data = await response.json();
-      alert("Producto actualizado correctamente.");
 
+      Swal.fire({
+        title: "¡Felicitaciones!",
+        text: "Producto actualizado correctamente.",
+        icon: "success",
+        confirmButtonColor: "#98D9E1",
+        confirmButtonText: "Aceptar",
+      });
       setIsOpenEdit(false);
       setSelected(null);
       await reloadProducts();
     } catch (error) {
       console.error(error.message);
-      alert("Hubo un problema al editar el producto.");
+      Swal.fire({
+        title: "Error",
+        text: "Hubo un problema al editar el producto.",
+        icon: "error",
+        confirmButtonColor: "#98D9E1",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
   const deleteProduct = async (id) => {
-    const confirmDelete = window.confirm(
-      "¿Estás seguro de eliminar el producto?"
-    );
-    if (confirmDelete) {
+    const result = await Swal.fire({
+      title: "¿Estás seguro de eliminar el producto?",
+      text: "No podrás revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#98D9E1",
+      cancelButtonColor: "#E51D0D",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (result.isConfirmed) {
       try {
         const response = await fetch(`${apiUrl}/${id}`, {
           method: "DELETE",
@@ -99,11 +138,24 @@ export const AdminProvider = ({ children }) => {
 
         if (!response.ok) throw new Error("Error al eliminar el producto.");
 
-        alert("Producto eliminado correctamente.");
         await reloadProducts();
+
+        Swal.fire({
+          title: "¡Eliminado!",
+          text: "El producto fue eliminado correctamente.",
+          icon: "success",
+          confirmButtonColor: "#98D9E1",
+          confirmButtonText: "Aceptar",
+        });
       } catch (error) {
         console.error(error);
-        alert("Hubo un problema al eliminar el producto.");
+        Swal.fire({
+          title: "Error",
+          text: "Hubo un problema al eliminar el producto.",
+          icon: "error",
+          confirmButtonColor: "#98D9E1",
+          confirmButtonText: "Aceptar",
+        });
       }
     }
   };

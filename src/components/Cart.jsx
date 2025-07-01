@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./CartStyles.css";
 import placeholder from "../assets/placeholder.jpg";
+import { toast } from "react-toastify";
 import { CartContext } from "../context/CartContext";
 
-export const Cart = ({
-  showCart,
-  onClose,
-}) => {
-
-
-  const {cart, handleAddToCart, handleDeleteFromCart, handleRemoveItem, handleEmptyCart } = useContext(CartContext);
+export const Cart = ({ showCart, onClose }) => {
+  const {
+    cart,
+    handleAddToCart,
+    handleDeleteFromCart,
+    handleRemoveItem,
+    handleEmptyCart,
+    handleFinishBuy,
+  } = useContext(CartContext);
 
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -74,10 +77,10 @@ export const Cart = ({
         </ul>
       )}
       <div>
-        <h1 className="total">
-          Total: ${totalPrice.toFixed(2)}
-        </h1>
-        <button className="button-primary">Iniciar compra</button>
+        <h1 className="total">Total: ${totalPrice.toFixed(2)}</h1>
+        <button onClick={() => handleFinishBuy()} className="button-primary">
+          Finalizar compra
+        </button>
         <button onClick={() => handleEmptyCart()} className="button-secondary">
           Vaciar carrito
         </button>
