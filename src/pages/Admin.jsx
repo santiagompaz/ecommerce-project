@@ -3,9 +3,11 @@ import ProductForm from "../components/ProductForm";
 import placeholder from "../assets/placeholder.jpg";
 import EditForm from "../components/EditForm";
 import spinner from "../assets/loading.gif";
+import logo from "../assets/logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { AdminContext } from "../context/AdminContext";
+import "./AdminStyles.css";
 
 export const Admin = () => {
   const { setIsAuthenticated } = useAuth();
@@ -23,7 +25,7 @@ export const Admin = () => {
     updateProduct,
     deleteProduct,
   } = useContext(AdminContext);
-  
+
   const { navigate } = useNavigate();
 
   return (
@@ -32,48 +34,51 @@ export const Admin = () => {
         <img src={spinner} alt="Cargando..." />
       ) : (
         <>
-          <nav>
-            <ul>
-              <li>
-                <button
-                  onClick={() => {
-                    setIsAuthenticated(false);
-                    navigate("/");
-                    localStorage.removeItem("isAuthenticated");
-                  }}
-                >
-                  <i className="bi bi-box-arrow-right"></i>
-                </button>
-              </li>
+          <header>
+            <nav className="navbar navbar-expand-lg navbar-custom">
+              <div className="container-fluid d-flex align-items-center">
+                <div className="d-flex align-items-center gap-3 text-decoration-none">
+                  <img src={logo} alt="La Selección" className="logo" />
+                  <h1 className="title m-0">
+                    La Selección - Huevos & Regionales
+                  </h1>
+                </div>
+                <div className="ms-auto d-flex align-items-center">
+                  <button
+                    className="icon-button"
+                    onClick={() => {
+                      setIsAuthenticated(false);
+                      navigate("/");
+                      localStorage.removeItem("isAuthenticated");
+                    }}
+                    title="Cerrar sesión"
+                  >
+                    <i className="bi bi-box-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </nav>
+          </header>
 
-              <li></li>
-            </ul>
-          </nav>
-          <h1>Panel administrativo</h1>
+          <h1 style={{ margin: "2rem" }}>Panel administrativo</h1>
 
           {products.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                border: "1px solid #ccc",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              <img
-                src={item.image || placeholder}
-                alt="Imagen del producto"
-                className="image"
-                style={{ width: "150px", height: "auto" }}
-              />
-              <h4>{item.name}</h4>
-              <p>{item.description}</p>
-              <p>Precio: ${item.price}</p>
-              <p>Stock: {item.stock}</p>
-              <p>Categoría: {item.category}</p>
+            <div className="product" key={item.id}>
+              <div className="image-container">
+                <img
+                  src={item.image || placeholder}
+                  alt="Imagen del producto"
+                  className="image"
+                />
+              </div>
+              <h4 className="name">{item.name}</h4>
+              <p className="description">{item.description}</p>
+              <p className="price">Precio: ${item.price}</p>
+              <p className="stock">Stock: {item.stock}</p>
 
-              <div>
+              <div className="button-area">
                 <button
+                  className="button-primary"
                   onClick={() => {
                     setSelected(item);
                     setIsOpenEdit(true);
@@ -81,12 +86,18 @@ export const Admin = () => {
                 >
                   Editar
                 </button>
-                <button onClick={() => deleteProduct(item.id)}>Eliminar</button>
+                <button
+                  className="button-secondary"
+                  onClick={() => deleteProduct(item.id)}
+                >
+                  Eliminar
+                </button>
               </div>
             </div>
           ))}
 
           <button
+            className="button-primary"
             onClick={() => {
               setSelected(null);
               setIsOpen(true);
