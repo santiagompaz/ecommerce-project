@@ -77,7 +77,7 @@ export const Header = () => {
                   <i className="bi bi-bag"></i> Galería
                 </NavLink>
               </li>
-              <li className="nav-item">
+               {/* <li className="nav-item">
                 <NavLink
                   to="/faq"
                   className={({ isActive }) =>
@@ -86,7 +86,7 @@ export const Header = () => {
                 >
                   <i className="bi bi-question-circle"></i> Preguntas frecuentes
                 </NavLink>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <NavLink
                   to="/contact"
