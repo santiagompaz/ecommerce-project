@@ -3,6 +3,8 @@
     border-width: 1px;
     border-radius: 20px;
     border-color: var(--light-gray);
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 .image-container{
     aspect-ratio: 1.0;
@@ -50,14 +52,22 @@
     border-width: 0;
     color: white;
     align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 .button:hover{
     background-color: var(--color-secondary)
 }
 .button-counter{
-    background-color: var(--light-gray);
+    background-color: var(--color-secondary);
     border-radius: 10px;
     border-width: 0;
-    color: white;
+    color: var(--text-primary);
+    font-weight: bold;
     align-items: center;
+}
+.quantity{
+    color: var(--text-primary);
+    margin: 1rem;
+    font-weight: bold;
 }

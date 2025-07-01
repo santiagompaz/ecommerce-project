@@ -3,12 +3,13 @@
     border-width: 1px;
     border-radius: 20px;
     border-color: var(--light-gray);
-    max-width: 25%;
-    align-self: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 .image-container-detail{
     aspect-ratio: 1.0;
-    width: 100%;
+    width: 25%;
+    margin: 0 auto;
 }
 .image-detail{
     aspect-ratio: 1.0;
@@ -35,4 +36,11 @@
 }
 .stock-detail{
     color: var(--middle-gray);
+}
+.button-primary{
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    border-width: 0;
+    color: white;
+    align-items: center;
 }
