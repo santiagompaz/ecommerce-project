@@ -16,7 +16,9 @@ export const ProductsGallery = () => {
       {loading ? (
         <img src={spinner} alt="Cargando..." />
       ) : (
+        <div style={{marginTop: '1rem'}}>
         <ProductList />
+        </div>
       )}
       <Footer />
     </div>
