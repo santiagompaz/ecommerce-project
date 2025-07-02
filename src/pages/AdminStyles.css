@@ -19,6 +19,7 @@
 }
 .name{
     color: var(--text-primary);
+    margin: 1rem;
 }
 .description{
     color: var(--dark-gray);
@@ -54,10 +55,7 @@
     border-color: var(--error);
     color: var(--error);
     align-items: center;
-    margin-top: 1rem;
-}
-.button:hover{
-    background-color: var(--color-secondary)
+    margin-top: 0rem;
 }
 .message-error{
     color: var(--error);

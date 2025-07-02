@@ -2,25 +2,19 @@ import React from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import banner from "../assets/banner.png";
+import "./AboutStyles.css";
 
 export const About = () => {
   return (
     <div>
       <Header />
-      <div style={{ display: "flex", flexDirection: "row", margin: "1rem" }}>
-        <div style={{ width: "50%", height: "50%" }}>
-          <img
-            src={banner}
-            alt="Banner principal"
-            style={{ width: "90%", height: "auto", margin: "1rem" }}
-          />
+      <div className="about-container">
+        <div className="about-image">
+          <img src={banner} alt="Banner principal" />
         </div>
-
-        <div style={{ width: "50%" }}>
-          <h2 style={{ textAlign: "left" }}>
-            La Seleccón - Huevos & Regionales
-          </h2>
-          <p style={{ textAlign: "left" }}>
+        <div className="about-text">
+          <h2>La Selección - Huevos & Regionales</h2>
+          <p>
             Todo comenzó con una simple pregunta: ¿Qué pasaría si los huevos no
             solo fueran más sanos, sino también más felices?
             <br />
@@ -50,3 +44,4 @@ export const About = () => {
     </div>
   );
 };
+

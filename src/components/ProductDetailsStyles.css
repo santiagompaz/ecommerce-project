@@ -8,7 +8,7 @@
 }
 .image-container-detail{
     aspect-ratio: 1.0;
-    width: 25%;
+    width: 100%;
     margin: 0 auto;
 }
 .image-detail{
@@ -20,6 +20,7 @@
 }
 .name-detail{
     color: var(--text-primary);
+    margin: 1rem;
 }
 .description-detail{
     color: var(--dark-gray);

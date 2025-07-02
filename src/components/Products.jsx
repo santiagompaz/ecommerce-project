@@ -22,7 +22,7 @@ export const Products = ({ product }) => {
           className="image"
         ></img>
       </div>
-      <p className="name">{product.name}</p>
+      <h4 className="name">{product.name}</h4>
       <p className="description">{product.description}</p>
       <div className="info">
         <p className="price">${product.price}</p>

@@ -22,7 +22,7 @@ export const ProductDetails = () => {
                 className="image-detail"
               />
             </div>
-            <p className="name-detail">{product.name}</p>
+            <h4 className="name-detail">{product.name}</h4>
             <p className="description-detail">{product.description}</p>
             <div className="info-detail">
               <p className="price-detail">${product.price}</p>
