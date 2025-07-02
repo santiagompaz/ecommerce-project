@@ -31,6 +31,11 @@ export const Contact = () => {
           placeholder="Escriba su consulta..."
         ></textarea>
       </div>
+      <div className="button-area">
+        <button className="button-primary">
+          Enviar
+        </button>
+      </div>
       <Footer />
     </div>
   );

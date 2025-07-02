@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./EditFormStyles.css";
 
 const EditForm = ({ selectedProduct, onUpdate }) => {
   const [product, setProduct] = useState(selectedProduct || {});
