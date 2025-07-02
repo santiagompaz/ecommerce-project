@@ -1,10 +1,22 @@
 .header-cart{
     display: flex;
     flex-direction: row;
-    background-color: var(--color-secondary);
+    background-color: white;
     padding: 4px;
     justify-content: space-between;
     align-items: center;
+}
+.icon-button-x {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: black;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.icon-button-x:hover {
+  transform: scale(1.2);
+  color: var(--error);
 }
 .item-container{
     display: flex;
@@ -15,7 +27,9 @@
     width: 100%;
 }
 .empty-cart{
-    color: var(--error)
+    color: var(--error);
+    font-weight:500;
+    margin: 4rem;
 }
 .image-item-container{
     width: 25%;
@@ -34,30 +48,51 @@
     align-items:start;
     padding-inline: 12px;
     width: 60%;
+    margin-top: 1rem;
 }
 .name-item{
     color:var(--text-primary);
     text-align: left;
     text-overflow: ellipsis;
+    
 }
 .price-item{
     color: var(--color-primary);
+    font-weight: bold;
 }
 .quantity-item{
     color: var(--text-primary);
     text-align: left;
+    font-weight: bold;
+    margin: 1rem;
 }
 .subtotal-item{
     color: var(--text-primary);
     text-align: left;
     font-weight: bold;
+    
 }
 .button-container{
     width: 15%;
 }
+.button-counter-cart{
+    background-color: var(--color-secondary);
+    border-radius: 10px;
+    border-width: 0;
+    color: var(--text-primary);
+    font-weight: bold;
+    align-items: center;
+    width: 5;
+}
 .total{
     color: var(--color-primary);
     font-size: large;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.button-area{
+    display: flex;
+    flex-direction: column;
 }
 .button-primary{
     background-color: var(--color-primary);

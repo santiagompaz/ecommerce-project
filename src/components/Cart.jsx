@@ -28,15 +28,17 @@ export const Cart = ({ showCart, onClose }) => {
     <div className={showCart ? "" : ""}>
       <div className="header-cart">
         <h2>Carrito de compras</h2>
-        <button onClick={onClose}>
+
+        <button className="icon-button-x" onClick={onClose}>
           <i className="bi bi-x-circle"></i>
         </button>
       </div>
       {!cart || cart.length === 0 ? (
         <p className="empty-cart">El carrito está vacío</p>
       ) : (
-        <ul>
+        <>
           {cart.map((item) => (
+            <>
             <li key={item.id} className="item-container">
               <div className="image-item-container">
                 <img
@@ -46,44 +48,55 @@ export const Cart = ({ showCart, onClose }) => {
                 />
               </div>
               <div className="info-container">
-                <h6 className="name-item">{item.name}</h6>
+                <h7 className="name-item">{item.name}</h7>
                 <p className="price-item">${item.price}</p>
+                <span></span>
                 <div className="quantity-control">
                   <button
                     onClick={() => handleDeleteFromCart(item)}
-                    className="button-counter"
+                    className="button-counter-cart"
                   >
                     −
                   </button>
                   <span className="quantity-item">{item.quantity}</span>
                   <button
                     onClick={() => handleAddToCart(item)}
-                    className="button-counter"
+                    className="button-counter-cart"
                   >
                     +
                   </button>
                 </div>
-                <p className="subtotal-item">
-                  Subtotal: ${item.price * item.quantity}
-                </p>
               </div>
+
               <div className="button-container">
-                <button onClick={() => handleRemoveItem(item)}>
+                <button
+                  className="icon-button-x"
+                  onClick={() => handleRemoveItem(item)}
+                >
                   <i className="bi bi-trash3"></i>
                 </button>
               </div>
-            </li>
+              </li>
+              <p className="subtotal-item">
+                  Subtotal: ${item.price * item.quantity}
+                </p>
+            </>
           ))}
-        </ul>
+        </>
       )}
       <div>
         <h1 className="total">Total: ${totalPrice.toFixed(2)}</h1>
-        <button onClick={() => handleFinishBuy()} className="button-primary">
-          Finalizar compra
-        </button>
-        <button onClick={() => handleEmptyCart()} className="button-secondary">
-          Vaciar carrito
-        </button>
+        <div className="button-area">
+          <button onClick={() => handleFinishBuy()} className="button-primary">
+            Finalizar compra
+          </button>
+          <button
+            onClick={() => handleEmptyCart()}
+            className="button-secondary"
+          >
+            Vaciar carrito
+          </button>
+        </div>
       </div>
     </div>
   );

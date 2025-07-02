@@ -43,6 +43,7 @@ export const CartProvider = ({ children }) => {
     const productInCart = cart.find((item) => item.id === product.id);
 
     if (productInCart) {
+      toast.success(`Se agregó ${product.name} al carrito de compras.`);
       setCart(
         cart.map((item) =>
           item.id === product.id
