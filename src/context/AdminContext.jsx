@@ -26,7 +26,7 @@ export const AdminProvider = ({ children }) => {
           title: "Error",
           text: "No se pudieron cargar los productos.",
           icon: "error",
-          confirmButtonColor: "#98D9E1",
+          confirmButtonColor: "#04516F",
           confirmButtonText: "Aceptar",
         });
       } finally {
@@ -67,7 +67,7 @@ export const AdminProvider = ({ children }) => {
         title: "¡Felicitaciones!",
         text: "Producto creado correctamente.",
         icon: "success",
-        confirmButtonColor: "#98D9E1",
+        confirmButtonColor: "#04516F",
         confirmButtonText: "Aceptar",
       });
       setIsOpen(false);
@@ -78,7 +78,7 @@ export const AdminProvider = ({ children }) => {
         title: "Error",
         text: "Hubo un problema al crear el producto.",
         icon: "error",
-        confirmButtonColor: "#98D9E1",
+        confirmButtonColor: "#04516F",
         confirmButtonText: "Aceptar",
       });
     }
@@ -100,7 +100,7 @@ export const AdminProvider = ({ children }) => {
         title: "¡Felicitaciones!",
         text: "Producto actualizado correctamente.",
         icon: "success",
-        confirmButtonColor: "#98D9E1",
+        confirmButtonColor: "#04516F",
         confirmButtonText: "Aceptar",
       });
       setIsOpenEdit(false);
@@ -112,7 +112,7 @@ export const AdminProvider = ({ children }) => {
         title: "Error",
         text: "Hubo un problema al editar el producto.",
         icon: "error",
-        confirmButtonColor: "#98D9E1",
+        confirmButtonColor: "#04516F",
         confirmButtonText: "Aceptar",
       });
     }
@@ -124,7 +124,7 @@ export const AdminProvider = ({ children }) => {
       text: "No podrás revertir esta acción",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#98D9E1",
+      confirmButtonColor: "#04516F",
       cancelButtonColor: "#E51D0D",
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: "Cancelar",
@@ -144,7 +144,7 @@ export const AdminProvider = ({ children }) => {
           title: "¡Eliminado!",
           text: "El producto fue eliminado correctamente.",
           icon: "success",
-          confirmButtonColor: "#98D9E1",
+          confirmButtonColor: "#04516F",
           confirmButtonText: "Aceptar",
         });
       } catch (error) {

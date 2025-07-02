@@ -17,7 +17,9 @@ export const Home = () => {
           <img src={banner} alt="Banner principal" style={{ width: '100%', height: 'auto', marginBottom: '1rem' }} />
           {
             loading ? 
-              <img src={spinner} alt='Cargando...'/> 
+            
+              <img src={spinner} alt='Cargando...' style={{margin: '4rem'}}/> 
+              
             :
               <ProductList />
           }

@@ -39,7 +39,10 @@ export const Header = () => {
             className="d-flex align-items-center gap-3 text-decoration-none"
           >
             <img src={logo} alt="Huevería La Selección" className="logo" />
-            <h1 className="title m-0">La Selección - Huevos & Regionales</h1>
+            <div className="title m-0">
+            <h1 className="title m-0">La Selección</h1>
+            <h4 className="subtitle m-0">Huevos & Regionales</h4>
+            </div>
           </Link>
 
           <div

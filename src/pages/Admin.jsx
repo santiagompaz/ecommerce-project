@@ -31,7 +31,7 @@ export const Admin = () => {
   return (
     <div>
       {loading ? (
-        <img src={spinner} alt="Cargando..." />
+        <img src={spinner} alt="Cargando..." style={{margin:'4rem'}}/>
       ) : (
         <>
           <header>

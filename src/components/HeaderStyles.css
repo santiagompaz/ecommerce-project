@@ -22,11 +22,20 @@
 }
 
 .title {
-  color: white;
+  color: var(--color-secondary);
   font-size: 1.8rem;
   margin: 0;
   font-weight: 600;
+  text-align: left;
 }
+.subtitle {
+  color: white;
+  font-size: 1.6rem;
+  margin: 0;
+  font-weight: 600;
+  text-align: left;
+}
+
 
 .sections {
   display: flex;
