@@ -11,7 +11,7 @@ export const Footer = () => {
           <div><NavLink to='/'><i className="bi bi-house-door"></i> Inicio</NavLink></div>
           <div><NavLink to='/about'><i className="bi bi-person"></i> Sobre nosotros</NavLink></div>
           <div><NavLink to='/gallery'><i className="bi bi-bag"></i> Galería de productos</NavLink></div>
-          <div><NavLink to='/faq'><i className="bi bi-question-circle"></i> Preguntas frecuentes</NavLink></div>
+          {/*<div><NavLink to='/faq'><i className="bi bi-question-circle"></i> Preguntas frecuentes</NavLink></div>*/}
           <div><NavLink to='/contact'><i className="bi bi-telephone"></i> Contáctanos</NavLink></div>
         </div>
         <div>
