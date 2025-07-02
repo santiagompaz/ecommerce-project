@@ -25,9 +25,12 @@ const EditForm = ({ selectedProduct, onUpdate }) => {
 
     let validationErrors = {};
     if (!product.name) validationErrors.name = "El nombre es requerido.";
-    if (!product.description) validationErrors.description = "La descripción es requerida.";
-    if (!product.price || product.price <= 0) validationErrors.price = "El precio debe ser mayor a 0.";
-    if (!product.stock || product.stock < 0) validationErrors.stock = "El stock debe ser 0 o más.";
+    if (!product.description)
+      validationErrors.description = "La descripción es requerida.";
+    if (!product.price || product.price <= 0)
+      validationErrors.price = "El precio debe ser mayor a 0.";
+    if (!product.stock || product.stock < 0)
+      validationErrors.stock = "El stock debe ser 0 o más.";
 
     if (Object.keys(validationErrors).length > 0) {
       setError(validationErrors);
@@ -41,87 +44,127 @@ const EditForm = ({ selectedProduct, onUpdate }) => {
     <form onSubmit={handleSubmit}>
       <h2>Editar producto</h2>
 
-      <div>
-        <label>ID:</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          ID:
+        </label>
         <input
           type="text"
           name="id"
           value={product.id || ""}
           readOnly
-        />
-      </div>
-
-      <div>
-        <label>Nombre:</label>
-        <input
-          type="text"
-          name="name"
-          value={product.name || ""}
-          onChange={handleChange}
-          required
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="ID"
         />
         {error.name && <p style={{ color: "red" }}>{error.name}</p>}
       </div>
 
-      <div>
-        <label>Descripción:</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Nombre
+        </label>
+        <input
+          type="text"
+          name="name"
+          value={product.name}
+          onChange={handleChange}
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Nombre"
+        />
+        {error.name && <p style={{ color: "red" }}>{error.name}</p>}
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Descripción: 
+        </label>
         <input
           type="text"
           name="description"
-          value={product.description || ""}
+          value={product.description}
           onChange={handleChange}
-          required
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Descripción"
         />
-        {error.description && <p style={{ color: "red" }}>{error.description}</p>}
+        {error.description && (
+          <p style={{ color: "red" }}>{error.description}</p>
+        )}
       </div>
 
-      <div>
-        <label>Precio:</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Precio:
+        </label>
         <input
           type="number"
           name="price"
-          value={product.price || ""}
+          value={product.price}
           onChange={handleChange}
-          required
           min="0"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Precio"
         />
         {error.price && <p style={{ color: "red" }}>{error.price}</p>}
       </div>
 
-      <div>
-        <label>Stock:</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Stock:
+        </label>
         <input
           type="number"
           name="stock"
-          value={product.stock || ""}
+          value={product.stock}
           onChange={handleChange}
-          required
           min="0"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Stock"
         />
         {error.stock && <p style={{ color: "red" }}>{error.stock}</p>}
       </div>
 
-      <div>
-        <label>Imagen URL:</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Imagen URL: 
+        </label>
         <input
           type="text"
           name="image"
-          value={product.image || ""}
+          value={product.image}
           onChange={handleChange}
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Imagen URL"
         />
+        {error.image && <p style={{ color: "red" }}>{error.image}</p>}
       </div>
 
-      <div>
-        <label>Categoría:</label>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">
+          Categoría:
+        </label>
         <input
           type="text"
           name="category"
-          value={product.category || ""}
+          value={product.category}
           onChange={handleChange}
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="Categoría"
         />
+        {error.category && <p style={{ color: "red" }}>{error.category}</p>}
       </div>
 
-      <button type="submit">Actualizar producto</button>
+      <div className="button-area">
+        <button type="submit" className="button-primary">
+          Actualizar producto
+        </button>
+      </div>
     </form>
   );
 };

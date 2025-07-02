@@ -1,0 +1,23 @@
+.button-area{
+    display: flex;
+    flex-direction: column;
+}
+.button-primary{
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    border-width: 0;
+    color: white;
+    align-items: center;
+}
+.button-secondary{
+    background-color: transparent;
+    border-radius: 10px;
+    border-width: 0.5;
+    border-color: var(--color-secondary);
+    color: var(--color-primary);
+    align-items: center;
+    margin-top: 1rem;
+}
+.button:hover{
+    background-color: var(--color-secondary)
+}

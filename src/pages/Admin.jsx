@@ -47,6 +47,17 @@ export const Admin = () => {
                   <button
                     className="icon-button"
                     onClick={() => {
+                      setSelected(null);
+                      setIsOpen(true);
+                    }}
+                    title="Crear nuevo producto"
+                  >
+                    <i class="bi bi-plus-square"></i>
+                  </button>
+
+                  <button
+                    className="icon-button"
+                    onClick={() => {
                       setIsAuthenticated(false);
                       navigate("/");
                       localStorage.removeItem("isAuthenticated");
@@ -61,6 +72,8 @@ export const Admin = () => {
           </header>
 
           <h1 style={{ margin: "2rem" }}>Panel administrativo</h1>
+
+          {isOpen && <ProductForm onAdd={createProduct} />}
 
           {products.map((item) => (
             <div className="product" key={item.id}>
@@ -95,18 +108,6 @@ export const Admin = () => {
               </div>
             </div>
           ))}
-
-          <button
-            className="button-primary"
-            onClick={() => {
-              setSelected(null);
-              setIsOpen(true);
-            }}
-          >
-            Crear nuevo producto
-          </button>
-
-          {isOpen && <ProductForm onAdd={createProduct} />}
 
           {isOpenEdit && selected && (
             <EditForm selectedProduct={selected} onUpdate={updateProduct} />
