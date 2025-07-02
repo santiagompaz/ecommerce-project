@@ -50,7 +50,7 @@ export const Cart = ({ showCart, onClose }) => {
               <div className="info-container">
                 <h7 className="name-item">{item.name}</h7>
                 <p className="price-item">${item.price}</p>
-                <span></span>
+
                 <div className="quantity-control">
                   <button
                     onClick={() => handleDeleteFromCart(item)}
