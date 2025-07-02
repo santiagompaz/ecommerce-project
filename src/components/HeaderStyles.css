@@ -146,11 +146,17 @@
 
 .nav-link:hover {
   color: #98D9E1;
+  transform: scale(1.1);
 }
 
 .nav-link.active {
   color: #98D9E1;
-  font-weight: 600;
+  transform: scale(1.1);
+
+}
+
+.nav-link.active .nav-text {
+  color: #98D9E1;
 }
 
 .nav-link.active i {

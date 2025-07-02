@@ -54,7 +54,7 @@ export const Header = () => {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                 >
-                  <i className="bi bi-house-door"></i> Home
+                  <i className="bi bi-house-door"></i> <span className="nav-text">Home</span>
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -64,7 +64,7 @@ export const Header = () => {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                 >
-                  <i className="bi bi-person"></i> Sobre nosotros
+                 <i className="bi bi-person"></i> <span className="nav-text">Sobre nosotros</span>
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -74,7 +74,7 @@ export const Header = () => {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                 >
-                  <i className="bi bi-bag"></i> Galería
+                  <i className="bi bi-bag"></i> <span className="nav-text">Galería</span>
                 </NavLink>
               </li>
                {/* <li className="nav-item">
@@ -84,7 +84,7 @@ export const Header = () => {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                 >
-                  <i className="bi bi-question-circle"></i> Preguntas frecuentes
+                  <i className="bi bi-question-circle"></i> <span className="nav-text">Preguntas frecuentes</span>
                 </NavLink>
               </li> */}
               <li className="nav-item">
@@ -94,7 +94,7 @@ export const Header = () => {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                 >
-                  <i className="bi bi-telephone"></i> Contacto
+                  <i className="bi bi-telephone"></i> <span className="nav-text">Contacto</span>
                 </NavLink>
               </li>
             </ul>
