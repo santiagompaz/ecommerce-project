@@ -7,7 +7,8 @@ export const Contact = () => {
   return (
     <div>
       <Header />
-      <h1 style={{margin:"2rem"}}>Formulario de contacto</h1>
+      <div style={{padding: "2rem"}}>
+      <h1 >Formulario de contacto</h1>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">
@@ -35,6 +36,7 @@ export const Contact = () => {
         <button className="button-primary">
           Enviar
         </button>
+      </div>
       </div>
       <Footer />
     </div>

@@ -31,7 +31,7 @@ export const Admin = () => {
   return (
     <div>
       {loading ? (
-        <img src={spinner} alt="Cargando..." style={{margin:'4rem'}}/>
+        <img src={spinner} alt="Cargando..." style={{ margin: "4rem" }} />
       ) : (
         <>
           <header>
@@ -71,47 +71,49 @@ export const Admin = () => {
             </nav>
           </header>
 
-          <h1 style={{ margin: "2rem" }}>Panel administrativo</h1>
+          <div style={{ padding: "2rem" }}>
+            <h1 style={{ marginBottom: "2rem" }}>Panel administrativo</h1>
 
-          {isOpen && <ProductForm onAdd={createProduct} />}
+            {isOpen && <ProductForm onAdd={createProduct} />}
 
-          {products.map((item) => (
-            <div className="product" key={item.id}>
-              <div className="image-container">
-                <img
-                  src={item.image || placeholder}
-                  alt="Imagen del producto"
-                  className="image"
-                />
+            {products.map((item) => (
+              <div className="product" key={item.id}>
+                <div className="image-container">
+                  <img
+                    src={item.image || placeholder}
+                    alt="Imagen del producto"
+                    className="image"
+                  />
+                </div>
+                <h4 className="name">{item.name}</h4>
+                <p className="description">{item.description}</p>
+                <p className="price">Precio: ${item.price}</p>
+                <p className="stock">Stock: {item.stock}</p>
+
+                <div className="button-area">
+                  <button
+                    className="button-primary"
+                    onClick={() => {
+                      setSelected(item);
+                      setIsOpenEdit(true);
+                    }}
+                  >
+                    Editar
+                  </button>
+                  <button
+                    className="button-secondary"
+                    onClick={() => deleteProduct(item.id)}
+                  >
+                    Eliminar
+                  </button>
+                </div>
               </div>
-              <h4 className="name">{item.name}</h4>
-              <p className="description">{item.description}</p>
-              <p className="price">Precio: ${item.price}</p>
-              <p className="stock">Stock: {item.stock}</p>
+            ))}
 
-              <div className="button-area">
-                <button
-                  className="button-primary"
-                  onClick={() => {
-                    setSelected(item);
-                    setIsOpenEdit(true);
-                  }}
-                >
-                  Editar
-                </button>
-                <button
-                  className="button-secondary"
-                  onClick={() => deleteProduct(item.id)}
-                >
-                  Eliminar
-                </button>
-              </div>
-            </div>
-          ))}
-
-          {isOpenEdit && selected && (
-            <EditForm selectedProduct={selected} onUpdate={updateProduct} />
-          )}
+            {isOpenEdit && selected && (
+              <EditForm selectedProduct={selected} onUpdate={updateProduct} />
+            )}
+          </div>
         </>
       )}
     </div>

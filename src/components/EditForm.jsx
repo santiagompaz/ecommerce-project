@@ -43,7 +43,7 @@ const EditForm = ({ selectedProduct, onUpdate }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Editar producto</h2>
+      <h2 style={{ margin: "2rem" }}>Editar producto</h2>
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">
@@ -63,7 +63,7 @@ const EditForm = ({ selectedProduct, onUpdate }) => {
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">
-          Nombre
+          Nombre:
         </label>
         <input
           type="text"

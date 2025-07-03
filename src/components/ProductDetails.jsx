@@ -13,7 +13,7 @@ export const ProductDetails = () => {
   return (
     <div>
       {product ? (
-        <>
+        <div style={{padding: "2rem"}}>
           <div className="product-detail">
             <div className="image-container-detail">
               <img
@@ -34,7 +34,7 @@ export const ProductDetails = () => {
               Volver
             </button>
           </div>
-        </>
+        </div>
       ) : (
         <p>Producto no encontrado</p>
       )}

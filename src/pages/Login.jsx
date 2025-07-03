@@ -27,7 +27,7 @@ export const Login = () => {
           </div>
         </nav>
       </header>
-      <div style={{marginTop:"2rem"}}></div>
+      <div style={{ padding: "2rem" }}>
       <form onSubmit={handleSubmit}>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">
@@ -66,6 +66,7 @@ export const Login = () => {
           </button>
         </div>
       </form>
+      </div>
     </>
   );
 };

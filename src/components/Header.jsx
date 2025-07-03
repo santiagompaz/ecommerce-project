@@ -2,13 +2,11 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./HeaderStyles.css";
 import Cart from "./Cart";
-import { Menu } from "./Menu";
 import logo from "../assets/logo.jpg";
 import { CartContext } from "../context/CartContext";
 
 export const Header = () => {
   const [showCart, setShowCart] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const { finder, setFinder } = useContext(CartContext);
   const searchRef = useRef();
@@ -34,17 +32,19 @@ export const Header = () => {
     <header>
       <nav className="navbar navbar-expand-lg navbar-custom">
         <div className="container-fluid d-flex align-items-center justify-content-between">
+          {/* Logo + título */}
           <Link
             to="/"
             className="d-flex align-items-center gap-3 text-decoration-none"
           >
             <img src={logo} alt="Huevería La Selección" className="logo" />
             <div className="title m-0">
-            <h1 className="title m-0">La Selección</h1>
-            <h4 className="subtitle m-0">Huevos & Regionales</h4>
+              <h1 className="title m-0">La Selección</h1>
+              <h4 className="subtitle m-0">Huevos & Regionales</h4>
             </div>
           </Link>
 
+          {/* Navegación */}
           <div
             className="collapse navbar-collapse justify-content-center"
             id="navbarNav"
@@ -67,7 +67,7 @@ export const Header = () => {
                     `nav-link ${isActive ? "active" : ""}`
                   }
                 >
-                 <i className="bi bi-person"></i> <span className="nav-text">Sobre nosotros</span>
+                  <i className="bi bi-person"></i> <span className="nav-text">Sobre nosotros</span>
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -80,7 +80,8 @@ export const Header = () => {
                   <i className="bi bi-bag"></i> <span className="nav-text">Galería</span>
                 </NavLink>
               </li>
-               {/* <li className="nav-item">
+              {/* 
+              <li className="nav-item">
                 <NavLink
                   to="/faq"
                   className={({ isActive }) =>
@@ -89,7 +90,8 @@ export const Header = () => {
                 >
                   <i className="bi bi-question-circle"></i> <span className="nav-text">Preguntas frecuentes</span>
                 </NavLink>
-              </li> */}
+              </li> 
+              */}
               <li className="nav-item">
                 <NavLink
                   to="/contact"
@@ -103,30 +105,29 @@ export const Header = () => {
             </ul>
           </div>
 
-          <div className="d-flex align-items-center gap-3">
-            <div className="icon-section">
-              {!showSearch && (
-                <button
-                  className="icon-button"
-                  onClick={() => setShowSearch(true)}
-                >
-                  <i className="bi bi-search"></i>
-                </button>
-              )}
+          {/* Íconos: búsqueda, carrito y menú */}
+          <div className="icon-section d-flex align-items-center gap-3 ms-auto">
+            {!showSearch && (
+              <button
+                className="icon-button"
+                onClick={() => setShowSearch(true)}
+              >
+                <i className="bi bi-search"></i>
+              </button>
+            )}
 
-              {showSearch && (
-                <div ref={searchRef}>
-                  <input
-                    type="text"
-                    className="search-slide"
-                    placeholder="Buscar productos..."
-                    value={finder}
-                    onChange={(e) => setFinder(e.target.value)}
-                    autoFocus
-                  />
-                </div>
-              )}
-            </div>
+            {showSearch && (
+              <div ref={searchRef}>
+                <input
+                  type="text"
+                  className="search-slide"
+                  placeholder="Buscar productos..."
+                  value={finder}
+                  onChange={(e) => setFinder(e.target.value)}
+                  autoFocus
+                />
+              </div>
+            )}
 
             <button
               className="icon-button"
@@ -150,15 +151,11 @@ export const Header = () => {
         </div>
       </nav>
 
+      {/* Sidebar del carrito */}
       <div className={`cart-sidebar ${showCart ? "open" : ""}`}>
         <Cart showCart={showCart} onClose={() => setShowCart(false)} />
       </div>
-
-      {/*
-      <div className={`menu-sidebar ${showMenu ? "open" : ""}`}>
-        <Menu />
-      </div>
-      */}
     </header>
   );
 };
+
