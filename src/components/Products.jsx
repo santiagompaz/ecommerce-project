@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 export const Products = ({ product }) => {
-
-  const {handleAddToCart} = useContext(CartContext);
+  const { handleAddToCart } = useContext(CartContext);
 
   const [quantity, setQuantity] = useState(0);
 
-  const add = () => setQuantity((prev) => (prev < product.stock ? prev + 1 : prev));
+  const add = () =>
+    setQuantity((prev) => (prev < product.stock ? prev + 1 : prev));
   const remove = () => setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
 
   return (
@@ -39,7 +39,10 @@ export const Products = ({ product }) => {
       </div>
       <div className="button-area">
         <button
-          onClick={() => handleAddToCart(product, quantity)}
+          onClick={() => {
+            handleAddToCart(product, quantity);
+            setQuantity(0);
+          }}
           className="button-primary"
           disabled={quantity === 0}
         >

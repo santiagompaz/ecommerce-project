@@ -72,9 +72,24 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const handleRemoveItem = (product) => {
-    toast.error(`Se eliminó ${product.name} del carrito de compras.`);
-    setCart((prevCart) => prevCart.filter((item) => item.id !== product.id));
+  const handleRemoveItem = async (product) => {
+    const result = await Swal.fire({
+      title: `¿Estás seguro de eliminar ${product.name} del carrito?`,
+      text: "El producto será eliminado.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#04516F",
+      cancelButtonColor: "#E51D0D",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (result.isConfirmed) {
+      setCart((prevCart) => prevCart.filter((item) => item.id !== product.id));
+      toast.error(`Se eliminó ${product.name} del carrito de compras.`);
+    }
+    
+    
   };
 
   const handleEmptyCart = async () => {
